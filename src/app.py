@@ -119,9 +119,9 @@ def unregister_from_activity(activity_name: str, email: str):
 
     activity = activities[activity_name]
 
-    # Validate participant is signed up
-    if email not in activity["participants"]:
-        raise HTTPException(status_code=404, detail="Participant is not signed up for this activity")
-
-    activity["participants"].remove(email)
+    # Another request may already have removed this participant.
+    try:
+        activity["participants"].remove(email)
+    except ValueError:
+        raise HTTPException(status_code=404, detail="Participant is not signed up for this activity") from None
     return {"message": f"Unregistered {email} from {activity_name}"}
