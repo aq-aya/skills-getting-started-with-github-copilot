@@ -6,6 +6,7 @@ A super simple FastAPI application that allows students to view and sign up for 
 
 - View all available extracurricular activities
 - Sign up for activities
+- Unregister a participant from an activity
 
 ## Getting Started
 
@@ -27,10 +28,29 @@ A super simple FastAPI application that allows students to view and sign up for 
 
 ## API Endpoints
 
-| Method | Endpoint                                                          | Description                                                         |
-| ------ | ----------------------------------------------------------------- | ------------------------------------------------------------------- |
-| GET    | `/activities`                                                     | Get all activities with their details and current participant count |
-| POST   | `/activities/{activity_name}/signup?email=student@mergington.edu` | Sign up for an activity                                             |
+| Method | Endpoint                                                              | Description                                                         |
+| ------ | --------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| GET    | `/activities`                                                         | Get all activities with their details and current participant count |
+| POST   | `/activities/{activity_name}/signup?email=student@mergington.edu`     | Sign up for an activity                                             |
+| DELETE | `/activities/{activity_name}/unregister?email=student@mergington.edu` | Unregister a participant from an activity                           |
+
+## Running the Tests
+
+The backend tests live in the `tests/` directory at the repository root and use `pytest`.
+
+1. From the repository root, install the dependencies (including `pytest`):
+
+   ```
+   pip install -r requirements.txt
+   ```
+
+2. Run the tests:
+
+   ```
+   python -m pytest
+   ```
+
+The tests run against the app in-process, so no server needs to be running.
 
 ## Data Model
 
